@@ -4,5 +4,6 @@ __pycache__
 .gitignore
 uploads/*
 audio/*
+data/*
 app.db
 *.pyc

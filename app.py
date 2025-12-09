@@ -15,13 +15,15 @@ from extractor import Extractor
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['AUDIO_FOLDER'] = 'audio'
+app.config['DATA_FOLDER'] = 'data'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max
 
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['AUDIO_FOLDER'], exist_ok=True)
+os.makedirs(app.config['DATA_FOLDER'], exist_ok=True)
 
 # Database setup
-DB_PATH = 'app.db'
+DB_PATH = os.path.join(app.config['DATA_FOLDER'], 'app.db')
 
 def init_db():
     conn = sqlite3.connect(DB_PATH)
