@@ -54,6 +54,29 @@ http://<your-device-ip>:5000
 
 If running locally, use: [http://localhost:5000](http://localhost:5000)
 
+## Updating the Application
+
+If you modify the code or pull new changes, follow these steps to update the running container while keeping your data:
+
+1.  **Rebuild the image:**
+    ```bash
+    docker build -t reader-app .
+    ```
+2.  **Stop and remove the old container:**
+    ```bash
+    docker stop reader-app
+    docker rm reader-app
+    ```
+3.  **Start the new container:**
+    ```bash
+    docker run -d -p 5101:5000 \
+      -v reader_uploads:/app/uploads \
+      -v reader_audio:/app/audio \
+      -v reader_data:/app/data \
+      -v reader_cache:/root/.cache \
+      --name reader-app reader-app
+    ```
+
 ## Development
 
 To run locally without Docker:
